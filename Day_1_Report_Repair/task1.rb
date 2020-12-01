@@ -1,3 +1,4 @@
+require 'benchmark'
 def findnumber
 x = [
   1544,
@@ -205,7 +206,21 @@ x = [
 # Find the two entries that sum to 2020 and then multiply them together.
 
 # x.combination(2).any? { |a, b| (a + b = 2020) }
-x.sort.combination(2).select { |a, b| (a + b == 2020) }
-end
+# first challenge answer
+# x.sort.combination(2).select { |a, b| (a + b == 2020) }
+# second challenge answer
+x.sort.combination(3).select { |a, b, c| (a + b + c == 2020) }
 
+end
 puts findnumber
+
+Benchmark.bm do |y|
+  y.report("with sort:") { findnumber }
+end
+# first answer = 704, 1316
+# 704 * 1316 = 926,464
+
+# Using .combination I should be able to find out if any three numbers add up to 2020 by just replacing .combination(2).select { |a, b| (a + b == 2020)} with .combination(3).select { |a, b, c| (a + b + c == 2020)} ...
+
+# second answer = 69, 968, 983
+# 69 * 968 * 983 = 65,656,536
