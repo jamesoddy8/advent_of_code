@@ -46,18 +46,28 @@ individual_passport = all_passports.split("\n\n")
 counter = 0
 criteria = "pid" && "byr" && "iyr" && "eyr" && "hgt" && "hcl" && "ecl"
 individual_passport.each do |element|
-  if element.count(':') >= 7
-    if element.include?('byr'&&'iyr'&&'eyr')
-      if element.include?('hgt'&&'hcl'&&'ecl'&&'pid')
-      # if element.include?('cm'||'in')
-        puts element + "
-        ------
-        "
-        counter += 1
-      # end
-    end 
+if element.count(':') >= 7
+  if element.include?('byr')
+    if element.include?('iyr')
+      if element.include?('eyr')
+        if element.include?('hgt')
+          if element.include?('cm'||'in')
+            if element.include?('hcl')
+              if element.include?('ecl')
+                if element.include?('pid')
+                    puts element + "
+                    ------
+                    "
+                    counter += 1
+                end
+              end
+            end
+          end
+        end
+      end
     end
   end
+end
 puts counter
 end
 # not 272 lol
