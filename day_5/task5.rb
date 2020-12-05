@@ -10,29 +10,29 @@ input     = File.read(file_path)
 seats = input.split("\n")
 
 ids = seats.map do |seat|
-  rmin, rmax = 0, 127
-  cmin, cmax = 0, 7
+  row_min, row_max = 0, 127
+  column_min, column_max = 0, 7
 
   seat.split("").each do |c|
-    ri = (rmin + rmax) / 2
-    ci = (cmin + cmax) / 2
+    ri = (row_min + row_max) / 2
+    ci = (column_min + column_max) / 2
 
     case c
     when ?F
-      rmax = ri
+      row_max = ri
     when ?B
-      rmin = ri + 1
+      row_min = ri + 1
     when ?L
-      cmax = ci
+      column_max = ci
     when ?R
-      cmin = ci + 1
+      column_min = ci + 1
     end
   end
 
-  rmin * 8 + cmin
+  row_min * 8 + column_min
 end
 
-puts ids.max 
+puts ids.max
 ids = Set.new(ids)
 
 puts (ids.min..ids.max).find { |id|
