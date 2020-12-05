@@ -1,7 +1,5 @@
 # def with input (ticket)
 # binary search tree?
-
-
 require 'set'
 
 file_path = File.expand_path('planetickets.txt', __dir__)
@@ -32,12 +30,12 @@ ids = seats.map do |seat|
   row_min * 8 + column_min
 end
 
-puts ids.max
+puts ids.max # fist answer
 ids = Set.new(ids)
 
 puts (ids.min..ids.max).find { |id|
   ids.include?(id - 1) && ids.include?(id + 1) && !ids.include?(id)
-}
+} # second answer
 # input = Array.new
 # File.readlines('planetickets.txt').each do |line|
 #   input << line.strip
