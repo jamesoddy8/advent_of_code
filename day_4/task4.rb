@@ -44,21 +44,23 @@
 all_passports = File.open("passports.txt", chomp: true).read
 individual_passport = all_passports.split("\n\n")
 counter = 0
-criteria = "pid" && "byr" && "iyr" && "eyr" && "hgt" && "hcl" && "ecl"
+eyecolour = ('amb') or ('blu') 
 individual_passport.each do |element|
 if element.count(':') >= 7
   if element.include?('byr')
     if element.include?('iyr')
       if element.include?('eyr')
-        if element.include?('hgt')
-          if element.include?('cm'||'in')
-            if element.include?('hcl')
-              if element.include?('ecl')
-                if element.include?('pid')
-                    puts element + "
-                    ------
-                    "
-                    counter += 1
+        if element.include? eyecolour
+          if element.include?('hgt')
+            if element.include?('cm'&&'in')
+              if element.include?('hcl')
+                if element.include?('ecl')
+                  if element.include?('pid')
+                      puts element + "
+                      ------
+                      "
+                      counter += 1
+                  end
                 end
               end
             end
